@@ -1,1 +1,73 @@
-<p>edit works!</p>
+<div class="container">
+    <h2>Update Employee</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" formControlName="firstName" class="form-control" [ngModel]="employee.firstName">
+        <div *ngIf="f['firstName'].touched && f['firstName'].invalid" class="requierd">
+            <div *ngIf="f['firstName'].errors && f['firstName'].errors['required']">First Name is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" formControlName="lastName" class="form-control" [ngModel]="employee.lastName">
+        <div *ngIf="f['lastName'].touched && f['lastName'].invalid" class="requierd" >
+            <div *ngIf="f['lastName'].errors && f['lastName'].errors['required']" >Last Name is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" class="form-control" [ngModel]="employee.email">
+        <div *ngIf="f['email'].touched && f['email'].invalid" class="requierd">
+            <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
+            <div *ngIf="f['email'].errors && f['email']">Invalid email format</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="DOB">Date of Birth</label>
+        <input type="date" id="DOB" formControlName="DOB" class="form-control" [ngModel]="employee.DOB">
+        <div *ngIf="f['DOB'].touched && f['DOB'].invalid" class="requierd">
+            <div *ngIf="f['DOB'].errors && f['DOB'].errors['required']">DOB is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group"> 
+        <label for="jender">Jender</label> 
+        
+         <select id="jender" formControlName="jender" class="form-control" [ngModel]="employee.jender">
+          <option value="">Select jender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option> 
+        </select>
+         <div *ngIf="f['jender'].touched && f['jender'].invalid" class="requierd">
+            <div *ngIf="f['jender'].errors && f['jender'].errors['required']">Jender is required.</div>
+        </div>
+      </div> 
+  
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input type="text" id="role" formControlName="role" class="form-control" [ngModel]="employee.role">
+        <div *ngIf="f['role'].touched && f['role'].invalid" class="requierd">
+            <div *ngIf="f['role'].errors && f['role'].errors['required']">Role is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="salary">Salary</label>
+        <input type="number" id="salary" formControlName="salary" class="form-control" [ngModel]="employee.salary">
+        <div *ngIf="f['salary'].touched && f['salary'].invalid" class="requierd">
+            <div *ngIf="f['salary'].errors && f['salary'].errors['required']">Salary is required.</div>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Confirm</button>
+      
+    </form>
+    
+  </div>
+  

@@ -8,10 +8,10 @@ import { Employee } from './employee';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private apiURL = "https://66a23b4c967c89168f1f4859.mockapi.io/:employee"
+  private apiURL = "https://66a23b4c967c89168f1f4859.mockapi.io"
 
   httpOptions = {
-    options: new HttpHeaders({
+    headers: new HttpHeaders({
       'content-type': 'application/json'
     })
   }   
@@ -19,26 +19,26 @@ export class EmployeeService {
   constructor(private httpClient: HttpClient) {}
 
   getAll (): Observable<any> {
-    return this.httpClient.get<any>(this.apiURL)
+    return this.httpClient.get<any>(this.apiURL + '/employee/')
     .pipe(
       catchError(this.errorHandler)
     )
   }
   create(employee: Employee): Observable<any> {
-    return this.httpClient.post<any>(this.apiURL , JSON.stringify(employee) )
+    return this.httpClient.post<any>(this.apiURL + '/employee/' , JSON.stringify(employee) , this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
   find(id:number): Observable<any> {
-    return this.httpClient.get<any>(this.apiURL + id)
+    return this.httpClient.get<any>(this.apiURL+'/employee/' + id)
     .pipe(
       catchError(this.errorHandler)
     )
   }
   update(id:number, employee:Employee): Observable<any> {
   
-    return this.httpClient.put(this.apiURL + '/posts/' + id, JSON.stringify(employee))
+    return this.httpClient.put(this.apiURL + '/employee/' + id, JSON.stringify(employee) , this.httpOptions)
  
     .pipe( 
       catchError(this.errorHandler)
@@ -46,7 +46,7 @@ export class EmployeeService {
   }
 
   delete(id:number): Observable<any> {
-    return this.httpClient.delete<any>(this.apiURL + id )
+    return this.httpClient.delete<any>(this.apiURL+ '/employee/' + id , this.httpOptions )
     .pipe(
       catchError(this.errorHandler)
     )

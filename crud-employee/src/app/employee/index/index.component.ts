@@ -14,38 +14,24 @@ import { AppComponent } from '../../app.component';
   styleUrl: './index.component.css'
 })
 export class IndexComponent {
-//   employees: Employee[] = [];
 
-//   constructor(public employeeService: EmployeeService){
-  
-  
-// }
 employees: Employee[] = [];
       
-  /*------------------------------------------
-  --------------------------------------------
-  Created constructor
-  --------------------------------------------
-  --------------------------------------------*/
   constructor(public employeeService: EmployeeService) { }
       
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   ngOnInit(): void {
     this.employeeService.getAll().subscribe((data: Employee[])=>{
       this.employees = data;
     })  
   }
       
-  
   deleteemployee(id:number){
-    this.employeeService.delete(id).subscribe(res => {
-         this.employees = this.employees.filter(item => item.id !== id);
-         console.log('employee deleted successfully!');
-    })
-  }
-  
+    let confirm = window.confirm("Are you sure you want to delete this employee?");
+    if (confirm){
+      this.employeeService.delete(id).subscribe(res => {
+        this.employees = this.employees.filter(item => item.id !== id);
+        alert('employee deleted successfully!');
+   })
+    } 
+  } 
 }
