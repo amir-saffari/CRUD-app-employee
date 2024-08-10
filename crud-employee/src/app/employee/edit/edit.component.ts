@@ -5,11 +5,18 @@ import { EmployeeService } from '../employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../employee';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 @Component({
   selector: 'app-edit',
+  providers:[provideNativeDateAdapter()],
   standalone: true,
-  imports: [CommonModule , ReactiveFormsModule ],
+  imports: [CommonModule , ReactiveFormsModule , MatFormFieldModule , MatDatepickerModule , MatInputModule , MatButtonModule , MatRadioModule ],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css'
 })
@@ -35,6 +42,7 @@ export class EditComponent {
       lastName: new FormControl('' , [Validators.required]),
       email: new FormControl('' , [ Validators.required , Validators.email]),
       DOB: new FormControl('' , [Validators.required]),
+      experience: new FormControl('' , Validators.required),
       jender: new FormControl('' , [Validators.required]),
       role: new FormControl('' , [Validators.required]),
       salary: new FormControl('' , [Validators.required])
@@ -51,9 +59,14 @@ export class EditComponent {
     this.employeeService.update(this.id, this.form.value ).subscribe((res:any) => {
       console.log("employee update successfully");
       this.router.navigateByUrl('employee/index'); 
-    })
-    
-    
+    }) 
   }
-  
+
+  cancel (){
+    this.router.navigateByUrl('employee/index');
+  }
+
+  public myError = (formcontrolName: string, errorName: string) =>{
+    return this.form.controls[formcontrolName].hasError(errorName);
+    }
 }

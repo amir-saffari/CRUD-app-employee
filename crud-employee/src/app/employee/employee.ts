@@ -5,6 +5,7 @@ export interface Employee {
     email: string,
     jender: string,
     DOB: string,
+    experience: string,
     salary: number,
     id: number
 }
