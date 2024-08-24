@@ -1,16 +1,21 @@
 
+<div class="table-title">
+  <div class="flex items-center justify-between">
+    <div>
+      <h2>Manage <b>Employees</b></h2>
+    </div>
+    <div  class="bg-green-600 p-2">
+      <a  href="#" routerLink="/employee/create/" >Add New Employee</a>
+    </div>
+  </div>
+</div>
+
 <div class="container px-20 mt-16">
     <div class=" shadow-md sm:rounded-lg">
-      <div class="table-title">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2>Manage <b>Employees</b></h2>
-          </div>
-          <div  class="bg-green-600 p-2">
-            <a  href="#" routerLink="/employee/create/" >Add New Employee</a>
-            
-          </div>
-        </div>
+      <div>
+        <form >
+          <input class="w-full p-3 bg-gray-200 border-bottom border-black"  type="search" placeholder="Search" [(ngModel)]="serchText" [ngModelOptions]="{standalone: true}">
+        </form>
       </div>
       <table class="table table-hover">
         <thead  >
@@ -28,7 +33,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employees">
+          <tr *ngFor="let employee of employees | search: serchText">
             <td>{{ employee.id }}</td>
             <td>{{ employee.firstName}}</td>
             <td>{{ employee.lastName }}</td>
