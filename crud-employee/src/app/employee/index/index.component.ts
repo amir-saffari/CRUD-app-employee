@@ -1,4 +1,4 @@
-import { Component, signal, Signal  } from '@angular/core';
+import { Component, signal,} from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
 import { CommonModule } from '@angular/common';
