@@ -1,4 +1,4 @@
-import { Component  } from '@angular/core';
+import { Component, signal, Signal  } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
 import { CommonModule } from '@angular/common';
@@ -19,14 +19,14 @@ import {MatIconModule} from '@angular/material/icon';
 })
 export class IndexComponent {
 
-employees: Employee[] = [];
-serchText = '';
+employees = signal<Employee[]>([]);
+serchText = signal('');
       
   constructor(public employeeService: EmployeeService) { }
       
   ngOnInit(): void {
     this.employeeService.getAll().subscribe((data: Employee[])=>{
-      this.employees = data;
+      this.employees.set(data);
     })  
   }
   
@@ -34,7 +34,7 @@ serchText = '';
     let confirm = window.confirm("Are you sure you want to delete this employee?");
     if (confirm){
       this.employeeService.delete(id).subscribe(res => {
-        this.employees = this.employees.filter(item => item.id !== id);
+        this.employees.update(employees => employees.filter(item => item.id !== id));
         alert('employee deleted successfully!');
    })
     } 

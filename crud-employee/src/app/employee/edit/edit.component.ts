@@ -43,7 +43,7 @@ export class EditComponent {
       email: new FormControl('' , [ Validators.required , Validators.email]),
       DOB: new FormControl('' , [Validators.required]),
       experience: new FormControl('' , Validators.required),
-      jender: new FormControl('' , [Validators.required]),
+      gender: new FormControl('' , [Validators.required]),
       role: new FormControl('' , [Validators.required]),
       salary: new FormControl('' , [Validators.required])
     }) 

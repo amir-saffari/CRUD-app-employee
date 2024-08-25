@@ -3,7 +3,7 @@ export interface Employee {
     lastName: string,
     role: string,
     email: string,
-    jender: string,
+    gender: string,
     DOB: string,
     experience: string,
     salary: number,

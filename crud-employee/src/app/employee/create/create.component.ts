@@ -9,18 +9,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { Employee } from '../employee';
 
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'LL',
-  },
-  display: {
-    dateInput: 'LL',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
+
 
 @Component({
   selector: 'app-create',
@@ -62,7 +53,7 @@ export class CreateComponent {
   submit() {
     
     if(this.form.valid){
-      this.employeeService.create(this.form.value).subscribe((res:any) => {
+      this.employeeService.create(this.form.value).subscribe((res:Employee) => {
         console.log("employee create successfully");
         this.router.navigateByUrl('employee/index'); 
       })
