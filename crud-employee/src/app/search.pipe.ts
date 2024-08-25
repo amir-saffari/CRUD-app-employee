@@ -8,7 +8,7 @@ import { Employee } from './employee/employee';
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(value: Employee[], args?: any): Employee[] | null {
+  transform(value: Employee[], args?: string): Employee[] | null {
     if (!value) return null;
     if (!args) return value;
     args = args.toLowerCase();
