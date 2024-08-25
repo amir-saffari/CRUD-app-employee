@@ -13,7 +13,7 @@ export class SearchPipe implements PipeTransform {
     if (!args) return value;
     args = args.toLowerCase();
 
-    return value.filter((item : Employee) => {
+    return value.filter((item: Employee) => {
       return JSON.stringify(item).toLowerCase().includes(args);
     })
   }
