@@ -20,7 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 export class IndexComponent {
 
 employees = signal<Employee[]>([]);
-serchText = signal('');
+serchText = signal('') ;
       
   constructor(public employeeService: EmployeeService) { }
       
